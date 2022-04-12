@@ -21,6 +21,7 @@
     <h5><a class="text-dark" href="/client/topic/{{ $discussion->id }}">{{ $discussion->title }}</a></h5>
   @endforeach
 </div>
+</div>
 
 
 @endsection
