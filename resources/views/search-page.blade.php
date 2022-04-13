@@ -21,6 +21,14 @@
     <h5><a class="text-dark" href="/client/topic/{{ $discussion->id }}">{{ $discussion->title }}</a></h5>
   @endforeach
 </div>
+
+<div class="col-lg-12 table-responsive mb-5 p-3 rounded" style="border: 1px solid #C4C4C4">
+  <h4 class="btn-primary p-3" >SURVEY</h4>
+  @foreach ($dataSurveys as $survey)
+    <h5><a class="text-dark" href="/survey/{{ $survey->id }}">{{ $survey->title }}</a></h5>
+  @endforeach
+</div>
+
 </div>
 
 
