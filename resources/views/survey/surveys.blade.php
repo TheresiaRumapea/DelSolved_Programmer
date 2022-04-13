@@ -26,9 +26,13 @@
                         <p style="margin-top: -10px;"><a href="#">{{ $survey->link }}</a></p>
                         <div class="align">
                             <span> <i class="fa fa-clock-o pr-2" aria-hidden="true"></i>berlaku hingga 20 maret 2022</span>
+
+                            @if (auth()->user()->is_admin)
+                                <a href="survey/delete/{{ $survey->id }}" class="btn btn-danger">Delete</a>
+                            @endif
+
                             <a class="text-right btn btn-primary p-2 " href="/survey/{{ $survey->id }}">More<i class="fa-solid fa-arrow-right pl-2"></i></a>
                         </div>
-
                     </div>
 
                 @endforeach

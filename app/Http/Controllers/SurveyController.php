@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Survey;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SurveyController extends Controller
 {
@@ -95,6 +96,15 @@ class SurveyController extends Controller
     public function deleteSurvey($id) {
         Survey::find($id)->delete();
         toastr()->success('Delete Survey successfully!');
+        return back();
+    }
+
+    /**
+     * hapus survey oleh admin
+     */
+    public function deleteSurveyByAdmin($id) {
+        $survey = DB::table("surveys")->where("id", $id);
+        $survey->delete();
         return back();
     }
 
