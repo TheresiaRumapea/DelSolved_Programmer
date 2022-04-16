@@ -16,7 +16,7 @@ class CreateForumRequestsTable extends Migration
         Schema::create('forum_requests', function (Blueprint $table) {
             $table->id();
             $table->string('forum_title');
-            $table->string('forum_desc')->nullable();
+            $table->string('forum_desc');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('category_id');

@@ -98,6 +98,11 @@ class DiscussionController extends Controller
         foreach ($admins as $admin) {
             $admin->notify(new NewReply($latestReply));
         }
+            $latestReply = DiscussionReply::latest()->first();
+            $admins = User::where('is_admin', 0)->get();
+            foreach ($admins as $admin) {
+                $admin->notify(new NewReply($latestReply));
+    }
 
         toastr()->success('Reply saved successfully!');
         return back();

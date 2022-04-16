@@ -16,7 +16,7 @@ class CreateRequestCategoriesTable extends Migration
         Schema::create('request_categories', function (Blueprint $table) {
             $table->id();
             $table->string('category_title');
-            $table->string('category_desc')->nullable();
+            $table->string('category_desc');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

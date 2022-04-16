@@ -118,7 +118,6 @@ Route::get('survey/self/{id}', [SurveyController::class, 'showSelfSurvey']);
 Route::get('survey/self/edit/{id}', [SurveyController::class, 'editSurveyForm']);
 Route::post('survey/self/storeEdit/{id}', [SurveyController::class, 'storeEditSurvey'])->name('store.edit');
 Route::get('survey/self/delete/{id}', [SurveyController::class, 'deleteSurvey']);
-Route::get("survey/delete/{id}", [SurveyController::class, 'deleteSurveyByAdmin']);
 
 /**
  * route untuk fitur profil & operasi self discussions
@@ -134,6 +133,12 @@ Route::post('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/search', function() {
     echo "NOT FOUND";
 });
+
+// Routes Notification User
+Route::get('/home/notifications', [HomeController::class,'notifications'])->name('notification');
+Route::get('/home/notifications/mark-as-read/{id}', [HomeController::class,'markAsRead'])->name('notifications.read');
+Route::get('/home/notifications/delete/{id}', [HomeController::class,'notificationDestroy'])->name('notifications.delete');
+
 
 
 

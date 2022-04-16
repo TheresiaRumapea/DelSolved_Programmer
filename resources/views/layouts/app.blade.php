@@ -79,6 +79,22 @@ $settings = Setting::latest()->first();
             <a class="nav-item nav-link text-white btn btn-outline-success" href="/dashboard/home">Admin Panel</a>
             @endif
 
+            @if((auth()->user()->is_admin))
+                         <!-- alert notification start-->
+                         <li id="alert_notificatoin_bar">
+                          <a  href="{{route('notifications')}}">
+                              <i id="alert_notificatoin_bar" class="fa fa-bell-o" aria-hidden="true"></i>
+                              {{-- <span class="badge bg-important">{{count($notifications)}}</span> --}}
+                                      </a>
+                           </li>
+                      @else
+                      <li id="alert_notificatoin_bar">
+                          <a  href="{{route('notification')}}">
+                              <i id="alert_notificatoin_bar" class="fa fa-bell-o" aria-hidden="true"></i>
+                              {{-- <span class="badge bg-important">{{count($notifications)}}</span> --}}
+                                      </a>
+                           </li>
+                      @endif
 
             {{-- Profil --}}
             <div>

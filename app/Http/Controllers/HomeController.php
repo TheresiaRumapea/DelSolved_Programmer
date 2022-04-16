@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Forum;
 use App\Models\Discussion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class HomeController extends Controller
 {
@@ -70,4 +72,27 @@ class HomeController extends Controller
         toastr()->success('Delete Topic successfully!');
         return back();
     }
+
+// Notification User
+public function notifications()
+{
+    $notifications = auth()->user()->notifications()->where('read_at', null)->get();
+    return view('client.UserNotification', compact('notifications'));
+}
+
+public function markAsRead($id)
+{
+    DB::table('notifications')->where('id', $id)->update(['is_read' => 1]);
+    return back();
+}
+
+public function notificationDestroy($id)
+{
+    $notification = auth()->user()->notifications()->where('id', $id)->first();
+    $notification->delete();
+    toastr()->success('Notification deleted successfully!');
+    return back();
+}
+
+
 }

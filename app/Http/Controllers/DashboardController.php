@@ -10,8 +10,12 @@ use App\Models\Setting;
 use App\Models\Category;
 use App\Models\Discussion;
 use App\Notifications\NewCategory;
+use App\Notifications\AcceptCategory;
+use App\Notifications\RejectCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\AcceptForum;
+use App\Notifications\RejectForum;
 
 class DashboardController extends Controller
 {
@@ -109,6 +113,11 @@ class DashboardController extends Controller
         foreach ($admins as $admin) {
             $admin->notify(new NewCategory($latestCategory));
         }
+            $latestCategory = Category::latest()->first();
+            $users = User::where('is_admin', 0)->get();
+            foreach ($users as $user) {
+                $user->notify(new AcceptCategory($latestCategory));
+        }
 
         $request_category->delete();
         return back();
@@ -116,7 +125,16 @@ class DashboardController extends Controller
 
     public function reject_category($id) {
         RequestCategory::find($id)->delete();
+
+
+        $latestCategory = Category::latest()->first();
+        $users = User::where('is_admin', 0)->get();
+        foreach ($users as $user) {
+            $user->notify(new RejectCategory($latestCategory));
+    }
+
         return back();
+
     }
 
     public function accept_forum($id) {
@@ -126,14 +144,30 @@ class DashboardController extends Controller
         $forum->desc = $request_forum->forum_desc;
         $forum->user_id = auth()->id();
         $forum->category_id = $request_forum->category_id;
+
+        $latestForum = Forum::latest()->first();
+        $users = User::where('is_admin', 0)->get();
+        foreach ($users as $user) {
+            $user->notify(new AcceptForum($latestForum));
+        }
+
         $forum->save();
         $request_forum->delete();
         return back();
+
+
     }
 
     public function reject_forum($id) {
         ForumRequest::find($id)->delete();
+        $latestForum = Forum::latest()->first();
+        $users = User::where('is_admin', 0)->get();
+        foreach ($users as $user) {
+            $user->notify(new RejectForum($latestForum));
+        }
         return back();
+
+
     }
 
 }
