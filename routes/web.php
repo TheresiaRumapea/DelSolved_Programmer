@@ -118,6 +118,7 @@ Route::get('survey/self/{id}', [SurveyController::class, 'showSelfSurvey']);
 Route::get('survey/self/edit/{id}', [SurveyController::class, 'editSurveyForm']);
 Route::post('survey/self/storeEdit/{id}', [SurveyController::class, 'storeEditSurvey'])->name('store.edit');
 Route::get('survey/self/delete/{id}', [SurveyController::class, 'deleteSurvey']);
+Route::get("survey/delete/{id}", [SurveyController::class, 'deleteSurveyByAdmin']);
 
 /**
  * route untuk fitur profil & operasi self discussions

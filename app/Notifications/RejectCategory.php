@@ -63,7 +63,7 @@ class RejectCategory extends Notification
             'name' =>$user->name,
             'email'=>$user->email,
             'message'=> $user->name." Reject the ".$this->category->title." Category",
-            'type'=>4
+            'type'=>9
         ];
     }
 

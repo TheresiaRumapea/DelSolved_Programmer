@@ -63,7 +63,7 @@ class RejectForum extends Notification
             'name' =>$user->name,
             'email'=>$user->email,
             'message'=> $user->name." Reject the ".$this->forum->title." Forum",
-            'type'=>4
+            'type'=>10
         ];
     }
 }

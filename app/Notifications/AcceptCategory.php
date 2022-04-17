@@ -61,7 +61,7 @@ class AcceptCategory extends Notification
             'name' =>$user->name,
             'email'=>$user->email,
             'message'=> $user->name." Accept the ".$this->category->title." Category",
-            'type'=>4
+            'type'=>7
         ];
     }
 }

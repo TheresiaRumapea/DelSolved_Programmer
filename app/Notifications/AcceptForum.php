@@ -63,7 +63,7 @@ class AcceptForum extends Notification
             'name' =>$user->name,
             'email'=>$user->email,
             'message'=> $user->name." Accept the ".$this->forum->title." Forum",
-            'type'=>4
+            'type'=>8
         ];
     }
 }

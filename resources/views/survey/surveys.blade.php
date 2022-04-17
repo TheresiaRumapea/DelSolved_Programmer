@@ -29,6 +29,12 @@
                             <a class="text-right btn btn-primary p-2 " href="/survey/{{ $survey->id }}">More<i class="fa-solid fa-arrow-right pl-2"></i></a>
                         </div>
 
+
+                        @if (auth()->user()->is_admin)
+                        <a href="survey/delete/{{ $survey->id }}" class="btn btn-danger alert_notifsurvey">Delete</a>
+                    @endif
+
+
                     </div>
 
                 @endforeach
