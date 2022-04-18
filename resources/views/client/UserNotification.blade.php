@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dashboard-user')
 @section('content')
 
 <style>
