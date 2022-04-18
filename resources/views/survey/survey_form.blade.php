@@ -52,11 +52,13 @@ button{
         @error('body')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
-        <!-- <br><br>
+        <br><br>
 
         <p>Tanggal akhir:</p>
-        <input name="date" type="date"> -->
-
+        <input name="delete_at" type="date">
+        @error('delete_at')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
         <br><br>
 
         <p>Link Survey <span class="text-danger">*</span> </p>

@@ -39,7 +39,7 @@ class survey extends Command
      */
     public function handle()
     {
-        DB::table('surveys')->where('created_at', '<', now()->subDays(7))->delete();
+        DB::table('surveys')->where('delete_at', '<', now()->subDays(0))->delete();
         echo "Survey Deleted";
     }
 }

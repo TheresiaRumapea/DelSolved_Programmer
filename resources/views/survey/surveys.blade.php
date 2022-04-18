@@ -25,7 +25,7 @@
                         <p>{{ Str::limit($survey->body, 10) }}</p>
                         <p style="margin-top: -10px;"><a href="#">{{ $survey->link }}</a></p>
                         <div class="align">
-                            <span> <i class="fa fa-clock-o pr-2" aria-hidden="true"></i>berlaku hingga 20 maret 2022</span>
+                            <span> <i class="fa fa-clock-o pr-2" aria-hidden="true"></i>Berlaku hingga {{ $survey->delete_at}}</span>
                             <a class="text-right btn btn-primary p-2 " href="/survey/{{ $survey->id }}">More<i class="fa-solid fa-arrow-right pl-2"></i></a>
                         </div>
 
