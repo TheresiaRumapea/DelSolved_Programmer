@@ -75,17 +75,20 @@ class SurveyController extends Controller
         $request->validate([
             'title' => 'required',
             'body' => 'required',
-            'link' => 'required'
+            'link' => 'required',
+            'delete_at' => 'required'
         ],
         [
             'title.required' => 'Please Fill Out This Field',
             'body.required'  => 'Please Fill Out This Field',
-            'link.required'  => 'Please Fill Out This Field'
+            'link.required'  => 'Please Fill Out This Field',
+            'delete_at.required'  => 'Please Fill Out This Field'
         ]
     );
         $survey = Survey::find($id);
         $survey->title = $request->title;
         $survey->body = $request->body;
+        $survey->delete_at = $request->delete_at;
         $survey->link = $request->link;
         $survey->update();
 

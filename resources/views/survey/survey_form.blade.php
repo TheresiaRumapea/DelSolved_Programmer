@@ -54,7 +54,7 @@ button{
         @enderror
         <br><br>
 
-        <p>Tanggal akhir:</p>
+        <p>Due Date <span class="text-danger">*</span></p>
         <input name="delete_at" type="date">
         @error('delete_at')
         <div class="alert alert-danger">{{ $message }}</div>
