@@ -100,13 +100,19 @@ if (Auth::check()) {
 
                 @auth
                     @if (auth()->user()->is_admin)
-                        <a href="/dashboard/notifications" class="nav-item nav-link text-white btn btn-outline-success">NOTIF
-                            <span>{{ $temp }}</span>
+                    <li id="alert_notificatoin_bar">
+                        <a href="/dashboard/notifications">
+                            <i id="alert_notificatoin_bar" class="fa fa-bell-o" aria-hidden="true"></i>
+                            <span class="badge bg-important">{{ $temp }}</span>
                         </a>
+                    </li>
                     @else
-                        <a href="/notifications" class="nav-item nav-link text-white btn btn-outline-success">NOTIF
-                            <span>{{ $temp }}</span>
+                    <li id="alert_notificatoin_bar">
+                        <a href="/notifications">
+                            <i id="alert_notificatoin_bar" class="fa fa-bell-o" aria-hidden="true"></i>
+                            <span class="badge bg-important">{{ $temp }}</span>
                         </a>
+                    </li>
                     @endif
                 @endauth
 
@@ -195,7 +201,7 @@ if (Auth::check()) {
             var getLink = $(this).attr('href');
             Swal.fire({
                 title: "Are You Sure?",
-                text: 'Do you want delete this survey?',
+                text: 'Do you want to delete this survey?',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
                 confirmButtonText: 'Delete',
@@ -217,7 +223,7 @@ if (Auth::check()) {
             var getLink = $(this).attr('href');
             Swal.fire({
                 title: "Are You Sure?",
-                text: 'Do you want delete this topic?',
+                text: 'Do you want to delete this topic?',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
                 confirmButtonText: 'Delete',
@@ -239,7 +245,7 @@ if (Auth::check()) {
             var getLink = $(this).attr('href');
             Swal.fire({
                 title: "Are You Sure?",
-                text: 'Do you want delete this reply?',
+                text: 'Do you want to delete this reply?',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
                 confirmButtonText: 'Delete',
@@ -255,6 +261,28 @@ if (Auth::check()) {
             return false;
         });
     </script>
+
+<script>
+    $('.alert_notifnotification').on('click',function(){
+        var getLink = $(this).attr('href');
+        Swal.fire({
+            title: "Are You Sure?",
+            text: 'Do you want to delete this notification?',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Delete',
+            cancelButtonColor: '#D3D3D3',
+            cancelButtonText: "Cancel"
+
+        }).then(result => {
+            //jika klik ya maka Delete
+            if(result.isConfirmed){
+                window.location.href = getLink
+            }
+        })
+        return false;
+    });
+</script>
 
 
 

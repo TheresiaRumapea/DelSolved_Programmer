@@ -246,7 +246,7 @@
            var getLink = $(this).attr('href');
            Swal.fire({
                title: "Are You Sure?",
-               text: 'Do you want delete this user?',
+               text: 'Do you want to delete this user?',
                showCancelButton: true,
                confirmButtonColor: '#d33',
                confirmButtonText: 'Delete',
@@ -268,7 +268,7 @@
         var getLink = $(this).attr('href');
         Swal.fire({
             title: "Are You Sure?",
-            text: 'Do you want delete this forum?',
+            text: 'Do you want to delete this forum?',
             showCancelButton: true,
             confirmButtonColor: '#d33',
             confirmButtonText: 'Delete',
@@ -290,7 +290,7 @@
         var getLink = $(this).attr('href');
         Swal.fire({
             title: "Are You Sure?",
-            text: 'Do you want delete this category?',
+            text: 'Do you want to delete this category?',
             showCancelButton: true,
             confirmButtonColor: '#d33',
             confirmButtonText: 'Delete',
@@ -312,7 +312,7 @@
         var getLink = $(this).attr('href');
         Swal.fire({
             title: "Are You Sure?",
-            text: 'Do you want delete this notification?',
+            text: 'Do you want to delete this notification?',
             showCancelButton: true,
             confirmButtonColor: '#d33',
             confirmButtonText: 'Delete',

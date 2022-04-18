@@ -40,7 +40,7 @@
 
         @csrf
 
-        <p>Title <span class="text-danger">*</span> </p> 
+        <p>Title <span class="text-danger">*</span> </p>
           <input name="title" type="text" value="{{ $survey->title }}">
           @error('title')
           <div class="alert alert-danger">{{ $message }}</div>
@@ -51,6 +51,13 @@
         <input name="body" type="text" class="deskripsi" value="{{ $survey->body }} ">
         @error('body')
           <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+        <br><br>
+
+        <p>Due Date <span class="text-danger">*</span></p>
+        <input name="delete_at" type="date" value="{{$survey->delete_at}}">
+        @error('delete_at')
+        <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <br><br>
 

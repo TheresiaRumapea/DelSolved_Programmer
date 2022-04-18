@@ -3,12 +3,14 @@ use App\Models\Notif;
 use Illuminate\Support\Facades\Auth;
 
 $notifs = Notif::all();
+global $temp;
 
 if (Auth::check()) {
-    foreach ($notifs as $notif) {
-        global $temp;
-        if ($notif->status[auth()->id() - 1]->is_read === 0 && $notif->status[auth()->id() - 1]->is_delete === 0) {
-            $temp++;
+    if (!is_null($notifs)) {
+        foreach ($notifs as $notif) {
+            if ($notif->status[auth()->id() - 1]->is_read === 0 && $notif->status[auth()->id() - 1]->is_delete === 0) {
+                $temp++;
+            }
         }
     }
 }
