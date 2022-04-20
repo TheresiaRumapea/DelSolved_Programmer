@@ -29,7 +29,7 @@
 
                 </td>
                 <td>
-                    <a href="{{ route('notif-delete', $notif->status[auth()->id() - 1]->id) }}" class="btn btn-danger">Delete</a>
+                    <a href="{{ route('notif-delete', $notif->status[auth()->id() - 1]->id) }}" class="text-danger alert_notifnotification"><i class="fas fa-trash text-danger"></i></a>
                 </td>
             </tr>
             @endif

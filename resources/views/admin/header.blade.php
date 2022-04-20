@@ -3,6 +3,7 @@ use App\Models\Notif;
 use Illuminate\Support\Facades\Auth;
 
 $notifs = Notif::all();
+global $temp;
 
 global $temp;
 

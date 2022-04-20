@@ -87,12 +87,12 @@
           @foreach ($surveys as $survey)
 
           <div class="col-lg-12 table-responsive mb-5 ml-3" style="border: 1px solid black">
-          <span>Dibuat oleh </span> <a href="/client/user/{{ $survey->user->id}}">{{ $survey->user->name}}</a>
+            <span>Created by </span> <a href="/client/user/{{ $survey->user->id}}">{{ $survey->user->name}}</a>
             <br>
             <h4 style="color:#333333"><b>{{ $survey->title }}</b></h4>
             <p>{{ $survey->body }}</p>
             <a href="#">{{ $survey->link }}</a><br>
-            <i class="fa fa-clock-o" aria-hidden="true"></i> <span>Berlaku hingga 20 Maret 2022</span>
+            <span> <i class="fa fa-clock-o pr-2" aria-hidden="true"></i>Expired till {{ $survey->delete_at}}</span>
 
             <div class="mb-4 d-grid gap-2 d-md-flex justify-content-md-end">
             <a class="css-button mr-3" href="/survey/self/edit/{{ $survey->id }}">

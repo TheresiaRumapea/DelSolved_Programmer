@@ -24,6 +24,7 @@ class NotifController extends Controller
         $delete = NotifStatus::find($id);
         $delete->is_delete = true;
         $delete->update();
+        toastr()->success('Notification deleted successfully!');
         return back();
     }
 }
