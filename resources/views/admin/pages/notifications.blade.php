@@ -50,26 +50,31 @@
                         </thead>
                         <tbody>
                         @foreach($notifs as $notif)
-                            @if($notif->status[auth()->id() - 1]->is_delete === 0)
-                                <tr>
-                                    {{--                @dd($notif->status[2])--}}
-                                    <td>{{ $notif->description }}</td>
-                                    <td>{{ $notif->user->name }}</td>
-                                    <td>{{ $notif->user->email }}</td>
-                                    <td>
 
-                                        @if ($notif->status[auth()->id() - 1]->is_read === 0)
-                                            <a href="{{ route('notif-read', $notif->status[auth()->id() - 1]->id) }}" class="btn btn-success">mark as read</a>
-                                        @else
-                                            <a href="" class="btn btn-secondary" disabled>mark as read</a>
-                                        @endif
+                            @isset($notif->status[auth()->id() - 1])
 
-                                    </td>
-                                    <td>
-                                        <a href="{{ route('notif-delete', $notif->status[auth()->id() - 1]->id) }}" class="text-danger alert_notifnotification"><i class="fas fa-trash text-danger"></i></a>
-                                    </td>
-                                </tr>
-                            @endif
+                                @if($notif->status[auth()->id() - 1]->is_delete === 0)
+                                    <tr>
+                                        {{--                @dd($notif->status[2])--}}
+                                        <td>{{ $notif->description }}</td>
+                                        <td>{{ $notif->user->name }}</td>
+                                        <td>{{ $notif->user->email }}</td>
+                                        <td>
+
+                                            @if ($notif->status[auth()->id() - 1]->is_read === 0)
+                                                <a href="{{ route('notif-read', $notif->status[auth()->id() - 1]->id) }}" class="btn btn-success">mark as read</a>
+                                            @else
+                                                <a href="" class="btn btn-secondary" disabled>mark as read</a>
+                                            @endif
+
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('notif-delete', $notif->status[auth()->id() - 1]->id) }}" class="text-danger alert_notifnotification"><i class="fas fa-trash text-danger"></i></a>
+                                        </td>
+                                    </tr>
+                                @endif
+
+                            @endisset
                         @endforeach
                         </tbody>
                     </table>

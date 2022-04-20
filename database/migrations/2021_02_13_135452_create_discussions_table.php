@@ -16,7 +16,7 @@ class CreateDiscussionsTable extends Migration
         Schema::create('discussions', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->longText('desc');
+            $table->longText('desc')->nullable();
             $table->unsignedBigInteger('forum_id');
             $table->foreign('forum_id')->references('id')->on('forums')->onDelete('cascade');
             $table->integer('is_deleted')->default(0);

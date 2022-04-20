@@ -22,7 +22,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+
                                     @if (count($category->forums) > 0)
                                         @auth
                                             @foreach (($category->forums) as $forum)
@@ -58,7 +58,7 @@
                                             </tr>
                                             @endforeach
                                         @endauth
-                                        
+
                                     @else
                                         <p>0 Forums found in this category</p>
                                     @endif
@@ -71,23 +71,28 @@
                 @endif
             </div>
 
-            {{-- forum & category request button --}}
-            @auth
-                @if (!(auth()->user()->is_admin))
-                <div class="mt-4 mb-5">
-                    <a class="btn btn-primary mb-2" href="/request/category">Request Category</a>
-                    <br/>
-                    <a class="btn btn-primary" href="/request/forum">Request Forum</a>
-                </div>
-                @endif
-            @endauth
+
 
         </div>
 
         <div class="col-lg-4">
+            {{-- forum & category request button --}}
+            @auth
+                @if (!(auth()->user()->is_admin))
+                    <div class="mt-4 mb-5">
+                        <a class="btn btn-primary mb-2" href="/request/category">Request Category</a>
+                        <br/>
+                        <a class="btn btn-primary" href="/request/forum">Request Forum</a>
+                    </div>
+                @endif
+            @endauth
             <aside>
+
                 <div class="card">
                     <div class="card-body">
+
+
+
                         <h4 class="card-title">Members Online</h4>
                         <ul class="list-unstyled mb-0">
                             @if (count($users_online) > 0)
@@ -129,7 +134,7 @@
                                             {{$user->name}}
                                         </a>
                                     </li>
-                                    @endif    
+                                    @endif
                                 @endforeach
                             @endif
                             <li>

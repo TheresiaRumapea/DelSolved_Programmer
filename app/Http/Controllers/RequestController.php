@@ -38,15 +38,24 @@ class RequestController extends Controller
         $total = DB::table('users')->count();
 
         $notif = new Notif();
-        $notif->description = "Request Category $request->request_category_name";
+        $notif->description = "New request category $request->request_category_name";
         $notif->user_id = auth()->id();
         $notif->save();
 
         for ($i = 1; $i <= $total; $i++) {
-            $notifStatus = new NotifStatus();
-            $notifStatus->user_id = $i;
-            $notifStatus->notif_id = Notif::latest()->value('id');
-            $notifStatus->save();
+            if ($i === auth()->id()) {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->is_read = 1;
+                $notifStatus->is_delete = 1;
+                $notifStatus->save();
+            } else {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->save();
+            }
         }
 
         $latest_request_category = RequestCategory::latest()->first();
@@ -83,15 +92,24 @@ class RequestController extends Controller
         $total = DB::table('users')->count();
 
         $notif = new Notif();
-        $notif->description = "Request Forum $request->request_forum_name";
+        $notif->description = "New request forum $request->request_forum_name";
         $notif->user_id = auth()->id();
         $notif->save();
 
         for ($i = 1; $i <= $total; $i++) {
-            $notifStatus = new NotifStatus();
-            $notifStatus->user_id = $i;
-            $notifStatus->notif_id = Notif::latest()->value('id');
-            $notifStatus->save();
+            if ($i === auth()->id()) {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->is_read = 1;
+                $notifStatus->is_delete = 1;
+                $notifStatus->save();
+            } else {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->save();
+            }
         }
 
         $latest_request_forum = ForumRequest::latest()->first();

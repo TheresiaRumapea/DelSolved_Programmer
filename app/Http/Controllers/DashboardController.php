@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ForumRequest;
 use App\Models\Notif;
+use App\Models\NotifStatus;
 use App\Models\RequestCategory;
 use App\Models\User;
 use App\Models\Forum;
@@ -96,9 +97,8 @@ class DashboardController extends Controller
     }
 
     public function request() {
-        $request_categories = RequestCategory::all();
-        $request_forums = ForumRequest::all();
-//        dd($request_forums);
+        $request_categories = RequestCategory::latest()->get();
+        $request_forums = ForumRequest::latest()->get();
         return view('admin.pages.request', compact('request_categories', 'request_forums'));
     }
 
@@ -109,6 +109,29 @@ class DashboardController extends Controller
         $category->desc = $request_category->category_desc;
         $category->user_id = auth()->id();
         $category->save();
+
+        $total = DB::table('users')->count();
+
+        $notif = new Notif();
+        $notif->description = "Request Category $request_category->category_title accept";
+        $notif->user_id = auth()->id();
+        $notif->save();
+
+        for ($i = 1; $i <= $total; $i++) {
+            if ($i === auth()->id()) {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->is_read = 1;
+                $notifStatus->is_delete = 1;
+                $notifStatus->save();
+            } else {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->save();
+            }
+        }
 
         $latestCategory = Category::latest()->first();
         $admins = User::where('is_admin', 1)->get();
@@ -122,10 +145,36 @@ class DashboardController extends Controller
         }
 
         $request_category->delete();
-        return back();
+        return redirect('dashboard/categories');
     }
 
     public function reject_category($id) {
+        $titleObj = RequestCategory::find($id);
+
+        $total = DB::table('users')->count();
+
+        $notif = new Notif();
+        $notif->description = "Request Category $titleObj->forum_title reject";
+        $notif->user_id = auth()->id();
+        $notif->save();
+
+        for ($i = 1; $i <= $total; $i++) {
+            if ($i === auth()->id()) {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->is_read = 1;
+                $notifStatus->is_delete = 1;
+                $notifStatus->save();
+            } else {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->save();
+            }
+
+        }
+
         RequestCategory::find($id)->delete();
 
 
@@ -153,6 +202,29 @@ class DashboardController extends Controller
             $user->notify(new AcceptForum($latestForum));
         }
 
+        $total = DB::table('users')->count();
+
+        $notif = new Notif();
+        $notif->description = "Request Forum $request_forum->request_title accept";
+        $notif->user_id = auth()->id();
+        $notif->save();
+
+        for ($i = 1; $i <= $total; $i++) {
+            if ($i === auth()->id()) {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->is_read = 1;
+                $notifStatus->is_delete = 1;
+                $notifStatus->save();
+            } else {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->save();
+            }
+        }
+
         $forum->save();
         $request_forum->delete();
         return back();
@@ -161,9 +233,36 @@ class DashboardController extends Controller
     }
 
     public function reject_forum($id) {
+        $titleObj = ForumRequest::find($id);
+
+        $total = DB::table('users')->count();
+
+        $notif = new Notif();
+        $notif->description = "Request Forum $titleObj->forum_title reject";
+        $notif->user_id = auth()->id();
+        $notif->save();
+
+        for ($i = 1; $i <= $total; $i++) {
+            if ($i === auth()->id()) {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->is_read = 1;
+                $notifStatus->is_delete = 1;
+                $notifStatus->save();
+            } else {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->save();
+            }
+
+        }
+
         ForumRequest::find($id)->delete();
         $latestForum = Forum::latest()->first();
         $users = User::where('is_admin', 0)->get();
+
         foreach ($users as $user) {
             $user->notify(new RejectForum($latestForum));
         }

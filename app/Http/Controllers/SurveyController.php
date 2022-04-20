@@ -48,15 +48,24 @@ class SurveyController extends Controller
         $total = DB::table('users')->count();
 
         $notif = new Notif();
-        $notif->description = "Create new survey $request->title";
+        $notif->description = "New survey $request->title created";
         $notif->user_id = auth()->id();
         $notif->save();
 
         for ($i = 1; $i <= $total; $i++) {
-            $notifStatus = new NotifStatus();
-            $notifStatus->user_id = $i;
-            $notifStatus->notif_id = Notif::latest()->value('id');
-            $notifStatus->save();
+            if ($i === auth()->id()) {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->is_read = 1;
+                $notifStatus->is_delete = 1;
+                $notifStatus->save();
+            } else {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->save();
+            }
         }
 
         return redirect('/survey');

@@ -2,7 +2,6 @@
 use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
 
-
 $settings = Setting::latest()->first();
 
 use App\Models\Notif;
@@ -13,8 +12,10 @@ global $temp;
 if (Auth::check()) {
     if (!is_null($notifs)) {
         foreach ($notifs as $notif) {
-            if ($notif->status[auth()->id() - 1]->is_read === 0 && $notif->status[auth()->id() - 1]->is_delete === 0) {
-                $temp++;
+            if (isset($notif->status[auth()->id() - 1])) {
+                if ($notif->status[auth()->id() - 1]->is_read === 0 && $notif->status[auth()->id() - 1]->is_delete === 0) {
+                    $temp++;
+                }
             }
         }
     }

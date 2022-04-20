@@ -62,19 +62,28 @@ class DiscussionController extends Controller
         $total = DB::table('users')->count();
 
         $notif = new Notif();
-        $notif->description = "Create new discussion $request->title";
+        $notif->description = "New discussion $request->title created";
         $notif->user_id = auth()->id();
         $notif->save();
 
         for ($i = 1; $i <= $total; $i++) {
-            $notifStatus = new NotifStatus();
-            $notifStatus->user_id = $i;
-            $notifStatus->notif_id = Notif::latest()->value('id');
-            $notifStatus->save();
+            if ($i === auth()->id()) {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->is_read = 1;
+                $notifStatus->is_delete = 1;
+                $notifStatus->save();
+            } else {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->save();
+            }
         }
 
         toastr()->success('Discussion Started successfully!');
-        return redirect('/');
+        return redirect("forum/overview/$id");
     }
 
     public function show($id)
@@ -98,6 +107,7 @@ class DiscussionController extends Controller
         );
 
         $reply = new DiscussionReply;
+
         $reply->desc = $request->desc;
         $reply->user_id = auth()->id();
         $reply->discussion_id = $id;
@@ -107,8 +117,37 @@ class DiscussionController extends Controller
 
         $reply->save();
 
+
+
         $user = auth()->user();
         $user->increment('rank', 10);
+
+        $last = DiscussionReply::latest()->first();
+        $name = $last->user->name;
+        $dis = $last->discussion->title;
+
+        $total = DB::table('users')->count();
+
+        $notif = new Notif();
+        $notif->description = "$name replies to topic $dis";
+        $notif->user_id = auth()->id();
+        $notif->save();
+
+        for ($i = 1; $i <= $total; $i++) {
+            if ($i === auth()->id()) {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->is_read = 1;
+                $notifStatus->is_delete = 1;
+                $notifStatus->save();
+            } else {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->save();
+            }
+        }
 
         $latestReply = DiscussionReply::latest()->first();
         $admins = User::where('is_admin', 1)->get();
@@ -119,7 +158,7 @@ class DiscussionController extends Controller
             $admins = User::where('is_admin', 0)->get();
             foreach ($admins as $admin) {
                 $admin->notify(new NewReply($latestReply));
-    }
+            }
 
         toastr()->success('Reply saved successfully!');
         return back();

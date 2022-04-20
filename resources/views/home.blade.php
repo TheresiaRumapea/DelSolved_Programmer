@@ -29,7 +29,7 @@
                                     <li class="list-group-item">
                                         <form action="{{route('user.photo.update', auth()->id())}}" method="POST" enctype="multipart/form-data">
                                             @csrf
-                                            <input type="file" class="form-control" name="profile_image">
+                                            <input type="file" class="form-control" name="profile_image" accept="image/*">
                                             <input type="submit" class="form-control" value="Update Photo">
                                         </form>
                                     </li>

@@ -54,7 +54,8 @@ use Illuminate\Support\Facades\Session;
         <div class="form-group">
             <label class="col-lg-2 control-label">Forum Category <span class="text-danger">*</span></label>
             <div class="col-lg-10">
-            <select name="category_id" class="form-control">
+            <select name="category_id" class="form-control" required>
+                <option value="">Select</option>
                 @foreach ($categories as $category)
                    <option value="{{$category->id}}">{{$category->title}}</option>
                 @endforeach
