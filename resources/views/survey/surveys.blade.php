@@ -20,12 +20,12 @@
                 @foreach ($surveys as $survey)
 
                     <div class="col-lg-12 table-responsive mb-5 p-3" style="border: 1px solid #C4C4C4">
-                    <span>Created by </span> <a href="/client/user/{{ $survey->user->id}}">{{ $survey->user->name}}</a>
+                    <span><i>Created by </i></span> <a href="/client/user/{{ $survey->user->id}}">{{ $survey->user->name}}</a>
                         <h5><b>{{ $survey->title }}</b></h5>
-                        <p>{{ Str::limit($survey->body, 10) }}</p>
+                        <p>{{ Str::limit($survey->body, 50) }}</p>
                         <p style="margin-top: -10px;"><a href="#">{{ $survey->link }}</a></p>
                         <div class="align">
-                            <span> <i class="fa fa-clock-o pr-2" aria-hidden="true"></i>Expired till {{ $survey->delete_at}}</span>
+                            <span> <i class="fa fa-clock-o pr-2" aria-hidden="true"></i>Valid until {{ $survey->delete_at}}</span>
                             <a class="text-right btn btn-primary p-2 " href="/survey/{{ $survey->id }}">More<i class="fa-solid fa-arrow-right pl-2"></i></a>
                         </div>
 
