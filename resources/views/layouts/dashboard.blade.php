@@ -329,6 +329,28 @@
     });
 </script>
 
+<script>
+    $('.alert_rejectRequest').on('click',function(){
+        var getLink = $(this).attr('href');
+        Swal.fire({
+            title: "Are you sure to Reject this request?",
+            // text: 'Do you want to delete this category?',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Delete',
+            cancelButtonColor: '#D3D3D3',
+            cancelButtonText: "Cancel"
+
+        }).then(result => {
+            //jika klik ya maka Delete
+            if(result.isConfirmed){
+                window.location.href = getLink
+            }
+        })
+        return false;
+    });
+</script>
+
  @jquery
  @toastr_js
  @toastr_render

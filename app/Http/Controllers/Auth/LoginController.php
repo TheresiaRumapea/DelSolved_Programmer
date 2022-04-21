@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
-    
+
     use AuthenticatesUsers;
 
     protected $redirectTo = RouteServiceProvider::HOME;
@@ -17,5 +17,5 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    
+
 }

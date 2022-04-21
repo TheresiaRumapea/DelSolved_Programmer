@@ -25,7 +25,7 @@
                         <label for="" class="mt-3" >Category <span class="text-danger">*</span></label>
                         <br>
                         <select name="request_forum_cat" id="" required>
-                            <option value>Select one</option>
+                            <option value>Select...</option>
                             @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->title }}</option>
                             @endforeach

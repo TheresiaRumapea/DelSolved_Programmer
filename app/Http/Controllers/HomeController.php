@@ -36,6 +36,8 @@ class HomeController extends Controller
      * menampilkan form edit discussion
      */
     public function showEditForm($id) {
+
+
         $user = Discussion::where('id', $id)->value('user_id');
         if (auth()->id() == $user) {
             $forum_id = Discussion::where('id', $id)->value('forum_id');
@@ -54,6 +56,16 @@ class HomeController extends Controller
      */
     public function storeEdit(Request $request, $id)
     {
+
+
+        $request->validate(
+            [
+                'title'=>'required',
+            ],
+            [
+                'title.required' => 'Please Fill Out This Field',
+            ]
+        );
         $discussion = Discussion::find($id);
         $discussion->title = $request->title;
         $discussion->desc = $request->desc;

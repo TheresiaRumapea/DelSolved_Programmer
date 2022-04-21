@@ -26,13 +26,14 @@ class SurveyController extends Controller
         $request->validate([
             'title' => 'required',
             'body' => 'required',
-            'link' => 'required',
-            'delete_at' => 'required'
+            'link' => 'required|url',
+            'delete_at' => 'required|date|after:now'
         ],
         [
             'title.required' => 'Please Fill Out This Field',
             'body.required'  => 'Please Fill Out This Field',
             'link.required'  => 'Please Fill Out This Field',
+            'link.url'  => 'Please enter a correct link.',
             'delete_at.required'  => 'Please Fill Out This Field'
         ]
     );
@@ -101,13 +102,14 @@ class SurveyController extends Controller
         $request->validate([
             'title' => 'required',
             'body' => 'required',
-            'link' => 'required',
-            'delete_at' => 'required'
+            'link' => 'required|url',
+            'delete_at' => 'required|date|after:now'
         ],
         [
             'title.required' => 'Please Fill Out This Field',
             'body.required'  => 'Please Fill Out This Field',
             'link.required'  => 'Please Fill Out This Field',
+            'link.url'  => 'Please enter a correct link.',
             'delete_at.required'  => 'Please Fill Out This Field'
         ]
     );

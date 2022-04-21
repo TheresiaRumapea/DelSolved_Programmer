@@ -63,7 +63,7 @@
 
         <p>Survey Link <span class="text-danger">*</span></p>
         <input name="link" type="text" value="{{ $survey->link }}">
-        @error('nama')
+        @error('link')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
         <br><br>

@@ -34,6 +34,7 @@ Route::get('/forum/overview/{id}', [FrontendController::class,'forumOverview'])-
  */
 Route::get('/forum/overview/delete/{id}', [FrontendController::class, 'deleteTopic']);
 
+
 Route::middleware(['auth','admin'])->group(function () {
     Route::get('dashboard/home', [DashboardController::class, 'home']);
     Route::get('dashboard/category/new', [CategoryController::class,'create'])->name('category.new');
@@ -146,6 +147,9 @@ Route::get('/notifications/delete/{id}', [NotifController::class, 'delete'])->na
 //Route::get('/home/notifications/delete/{id}', [HomeController::class,'notificationDestroy'])->name('notifications.delete');
 
 
+//Route setelah reset password
+// Route::get('/success', [ResetPasswordController::class, 'index']);
+Route::view('/success', 'auth.success');
 
 
 

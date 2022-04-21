@@ -35,7 +35,7 @@
                         <td>{{ $category->category_desc }}</td>
                         <td>
                             <a class="btn btn-success" href="{{ route('accept_category', $category->id) }}">Accept</a>
-                            <a class="btn btn-danger" href="{{ route('reject_category', $category->id) }}">Reject</a>
+                            <a class="btn btn-danger alert_rejectRequest" href="{{ route('reject_category', $category->id) }}">Reject</a>
                         </td>
 
                     </tr>
@@ -64,7 +64,7 @@
                         <td>{{ $forum->category->title }}</td>
                         <td>
                             <a class="btn btn-success" href="{{ route('accept_forum', $forum->id) }}">Accept</a>
-                            <a class="btn btn-danger" href="{{ route('reject_forum', $forum->id)}}">Reject</a>
+                            <a class="btn btn-danger alert_rejectRequest" href="{{ route('reject_forum', $forum->id)}}">Reject</a>
                         </td>
                     </tr>
                     @endforeach

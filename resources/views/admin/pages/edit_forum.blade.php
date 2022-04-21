@@ -55,6 +55,7 @@ use Illuminate\Support\Facades\Session;
             <label class="col-lg-2 control-label">Forum Category <span class="text-danger">*</span></label>
             <div class="col-lg-10">
             <select name="category_id" class="form-control">
+                <option value>Select...</option>
                 @foreach ($categories as $category)
                    <option value="{{$category->id}}">{{$category->title}}</option>
                 @endforeach
@@ -87,7 +88,7 @@ use Illuminate\Support\Facades\Session;
             <button type="submit" class="btn btn-primary">Update</button>
             <a href="/dashboard/home" class="btn btn-danger">Cancel</a>
           </div>
-        </div> 
+        </div>
       </form>
     </div>
   </section>

@@ -61,8 +61,8 @@ button{
         @enderror
         <br><br>
 
-        <p>Link Survey <span class="text-danger">*</span> </p>
-        <input name="link" type="url">
+        <p>Survey Link <span class="text-danger">*</span> </p>
+        <input name="link">
         @error('link')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror

@@ -8,9 +8,12 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller
 {
-    
+
     use ResetsPasswords;
-    
-    protected $redirectTo = RouteServiceProvider::HOME;
+
+    protected $redirectTo = RouteServiceProvider::SUCCESS;
+    public function index(){
+        return view('auth.success');
+    }
 
 }

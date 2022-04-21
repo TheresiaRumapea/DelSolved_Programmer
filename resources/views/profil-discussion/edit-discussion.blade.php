@@ -28,6 +28,10 @@
           <label for="title" class="mt-2">Topic Title <span class="text-danger">*</span> </label>
           <input type="text" name="title" class="form-control" value="{{ $discussion->title }}"/>
         </div>
+        @error('title')
+        <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+
         <div class="form-group">
           <label for="title" class="mt-2">Description </label>
           <textarea
@@ -35,7 +39,6 @@
             name="desc"
             id=""
             rows="10"
-            required
           >{{ $discussion->desc }}</textarea>
         </div>
 
