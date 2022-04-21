@@ -43,29 +43,31 @@ use Illuminate\Support\Facades\Session;
           <label class="col-lg-2 control-label">Forum Title <span class="text-danger">*</span></label>
           <div class="col-lg-10">
           <input name="title" class="form-control" value=""/>
+          @error('title')
+          <p class="alert alert-danger"> {{$message}}</p>
+          @enderror
           </div>
         </div>
 
-        @error('title')
-            <p class="alert alert-danger"> {{$message}}</p>
-        @enderror
+
 
 
         <div class="form-group">
             <label class="col-lg-2 control-label">Forum Category <span class="text-danger">*</span></label>
             <div class="col-lg-10">
-            <select name="category_id" class="form-control" required>
+            <select name="category_id" class="form-control" >
                 <option value="">Select...</option>
                 @foreach ($categories as $category)
                    <option value="{{$category->id}}">{{$category->title}}</option>
                 @endforeach
             </select>
-            </div>
-          </div>
-
             @error('category_id')
             <p class="alert alert-danger"> {{$message}}</p>
             @enderror
+            </div>
+          </div>
+
+
 
         <div class="form-group">
           <label class="col-lg-2 control-label">Forum description</label>

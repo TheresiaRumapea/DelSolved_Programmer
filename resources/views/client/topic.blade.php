@@ -100,9 +100,9 @@
                   <div>
                     <a name="desc" class="btn alert_notifreply" href="{{route('reply.delete', $reply->id)}}" ><i class="fa fa-trash text-danger"></i></a>
                   </div>
-                  @error('desc')
+                  {{-- @error('desc')
                   <div class="alert alert-danger">{{ $message }}</div>
-                  @enderror
+                  @enderror --}}
 
                   @elseif (auth()->user()->is_admin)
                   <div>
@@ -110,9 +110,9 @@
                     <a href="{{route('reply.dislike', $reply->id)}}" ><i class="fa fa-thumbs-down text-danger">{{$reply->dislikes}}</i></a> --}}
                     <a name="desc" class="btn alert_notifreply" href="{{route('reply.delete', $reply->id)}}" ><i class="fa fa-trash text-danger"></i></a>
                 </div>
-                  @error('desc')
+                  {{-- @error('desc')
                   <div class="alert alert-danger">{{ $message }}</div>
-                  @enderror
+                  @enderror --}}
 
                   @else
                   <div>
@@ -176,10 +176,12 @@
       <textarea
         class="form-control"
         name="desc"
-
         rows="10"
-        required
+        {{-- required --}}
       ></textarea>
+      @error('desc')
+      <div class="alert alert-danger">{{ $message }}</div>
+      @enderror
       <button type="submit" class="btn btn-primary mt-2 mb-lg-5">
         Submit reply
       </button>
@@ -201,7 +203,7 @@
           type="email"
           class="form-control"
           placeholder="example@gmail.com"
-          required
+          {{-- required --}}
         />
       </div>
 
@@ -211,7 +213,7 @@
           type="password"
           class="form-control"
           name="password"
-          required
+          {{-- required --}}
         />
       </div>
 

@@ -60,6 +60,9 @@ use Illuminate\Support\Facades\Session;
                    <option value="{{$category->id}}">{{$category->title}}</option>
                 @endforeach
             </select>
+            @error('category_id')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             </div>
           </div>
 

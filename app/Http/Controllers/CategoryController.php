@@ -36,7 +36,7 @@ class CategoryController extends Controller
                 'title'=>'required',
             ],
             [
-                'title.required' => 'Please Fill Out This Field',
+                'title.required' => 'Please fill out this field',
             ]
         );
 
@@ -89,7 +89,7 @@ class CategoryController extends Controller
                 'title'=>'required',
             ],
             [
-                'title.required' => 'Please Fill Out This Field',
+                'title.required' => 'Please fill out this field',
             ]
         );
 

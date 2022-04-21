@@ -82,6 +82,18 @@ class RequestController extends Controller
      * di form ke dalam database
      */
     public function store_request_forum(Request $request) {
+
+        $request->validate(
+            [
+                'title'=>'required',
+                'category_id' => 'required'
+            ],
+            [
+                'title.required' => 'Please fill out this field',
+                'category_id.required' => 'Please select item in the list'
+            ]
+        );
+
         $request_forum = new ForumRequest();
         $request_forum->forum_title = $request->request_forum_name;
         $request_forum->forum_desc = $request->request_forum_desc;

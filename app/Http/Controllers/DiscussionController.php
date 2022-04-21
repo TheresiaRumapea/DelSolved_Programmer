@@ -30,7 +30,7 @@ class DiscussionController extends Controller
             // 'desc' => 'required'
             ],
             [
-                'title.required' => 'Please Fill Out This Field'
+                'title.required' => 'Please fill out this field'
                 // 'desc.required'  => 'Inputan Deskripsi tidak boleh kosong',
             ]
         );
@@ -102,7 +102,7 @@ class DiscussionController extends Controller
                 'desc' => 'required'
             ],
             [
-                'desc.required'  => 'Inputan Deskripsi tidak boleh kosong',
+                'desc.required'  => 'Please fill out this field',
             ]
         );
 

@@ -27,11 +27,14 @@ class ForumController extends Controller
 
     public function store(Request $request)
     {
-            $request->validate([
+        $request->validate(
+            [
                 'title'=>'required',
+                'category_id' => 'required'
             ],
             [
-                'title.required' => 'Please Fill Out This Field',
+                'title.required' => 'Please fill out this field',
+                'category_id.required' => 'Please select item in the list'
             ]
         );
         Forum::create($request->all());
@@ -66,13 +69,17 @@ class ForumController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'title'=>'required',
-        ],
-        [
-            'title.required' => 'Please Fill Out This Field',
-        ]
-    );
+        $request->validate(
+            [
+                'title'=>'required',
+                'category_id' => 'required'
+            ],
+            [
+                'title.required' => 'Please fill out this field',
+                'category_id.required' => 'Please select item in the list'
+            ]
+        );
+
 
         $forum = Forum::find($id);
         $forum->update($request->all());

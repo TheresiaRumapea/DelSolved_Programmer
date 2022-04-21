@@ -30,11 +30,11 @@ class SurveyController extends Controller
             'delete_at' => 'required|date|after:now'
         ],
         [
-            'title.required' => 'Please Fill Out This Field',
-            'body.required'  => 'Please Fill Out This Field',
-            'link.required'  => 'Please Fill Out This Field',
+            'title.required' => 'Please fill out this field',
+            'body.required'  => 'Please fill out this field',
+            'link.required'  => 'Please fill out this field',
             'link.url'  => 'Please enter a correct link.',
-            'delete_at.required'  => 'Please Fill Out This Field'
+            'delete_at.required'  => 'Please fill out this field'
         ]
     );
         $survey = new Survey();
@@ -106,11 +106,11 @@ class SurveyController extends Controller
             'delete_at' => 'required|date|after:now'
         ],
         [
-            'title.required' => 'Please Fill Out This Field',
-            'body.required'  => 'Please Fill Out This Field',
-            'link.required'  => 'Please Fill Out This Field',
+            'title.required' => 'Please fill out this field',
+            'body.required'  => 'Please fill out this field',
+            'link.required'  => 'Please fill out this field',
             'link.url'  => 'Please enter a correct link.',
-            'delete_at.required'  => 'Please Fill Out This Field'
+            'delete_at.required'  => 'Please fill out this field'
         ]
     );
         $survey = Survey::find($id);

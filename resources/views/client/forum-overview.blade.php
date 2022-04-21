@@ -39,8 +39,7 @@
                       <h3 class="h6">
                         <span class="badge badge-success">{{$topic->replies->count()}} replies</span>
                         <a href="{{route('topic', $topic->id)}}" class=""
-                          >{{$topic->title}}.</a
-                        >
+                          >{{$topic->title}}.</a>
                       </h3>
 
                     </td>

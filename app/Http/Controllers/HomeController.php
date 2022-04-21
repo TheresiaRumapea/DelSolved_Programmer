@@ -63,7 +63,7 @@ class HomeController extends Controller
                 'title'=>'required',
             ],
             [
-                'title.required' => 'Please Fill Out This Field',
+                'title.required' => 'Please fill out this field',
             ]
         );
         $discussion = Discussion::find($id);

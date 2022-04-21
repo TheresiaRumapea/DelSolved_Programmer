@@ -5,8 +5,8 @@ use Illuminate\Support\Facades\Session;
 
 @section('content')
           <!--main content start-->
-       
-          
+
+
     <section id="main-content">
         <section class="wrapper">
           <div class="row">
@@ -34,22 +34,22 @@ use Illuminate\Support\Facades\Session;
 
       <p class="alert
       {{ Session::get('alert-class', 'alert-success') }}">{{Session::get('message') }}</p>
-      
+
       @endif
       <form class="form-horizontal" method="POST" action="{{ route('category.store')}}" enctype="multipart/form-data">
           @csrf
-      
+
         <div class="form-group">
           <label class="col-lg-2 control-label">Category Title <span class="text-danger">*</span> </label>
           <div class="col-lg-10">
           <input name="title" class="form-control" value=""/>
+          @error('title')
+          <p class="alert alert-danger"> {{$message}}</p>
+          @enderror
           </div>
         </div>
-       
-            @error('title')
-            <p class="alert alert-danger"> {{$message}}</p>
-        @enderror
-       
+
+
 
         {{-- <div class="form-group">
             <label class="col-lg-2 control-label">Category Image</label>
@@ -57,11 +57,11 @@ use Illuminate\Support\Facades\Session;
             <input type="file" name="image" class="form-control" />
             </div>
           </div>
-          
+
             @error('image')
             <p class="alert alert-danger"> {{$message}}</p>
             @enderror --}}
-          
+
         <div class="form-group">
           <label class="col-lg-2 control-label">Category description </label>
           <div class="col-lg-10">
@@ -69,13 +69,13 @@ use Illuminate\Support\Facades\Session;
           </div>
         </div>
 
-        
+
             @error('desc')
             <p class="alert alert-danger"> {{$message}}</p>
             @enderror
-          
-       
-        
+
+
+
 
         <div class="form-group">
           <div class="col-lg-offset-2 col-lg-10">
@@ -92,5 +92,5 @@ use Illuminate\Support\Facades\Session;
         </section>
       </section>
       <!--main content end-->
-      
+
 @endsection

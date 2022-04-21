@@ -18,18 +18,28 @@
                     <form action="{{ route('request.forum.store') }}", method="post">
                         @csrf
                         <label class="mb-0" for="">Forum Title <span class="text-danger">*</span> </label>
-                        <input required name="request_forum_name" class="col-lg-12 table-responsive" type="text">
+                        <input name="request_forum_name" class="col-lg-12 table-responsive" type="text">
+                        @error('title')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
                         <label class="mb-0 mt-3" for="">Description</label>
                         <input name="request_forum_desc" class="col-lg-12 table-responsive mb-2" type="text">
 
                         <label for="" class="mt-3" >Category <span class="text-danger">*</span></label>
                         <br>
-                        <select name="request_forum_cat" id="" required>
-                            <option value>Select...</option>
+
+
+                        <select name="request_forum_cat" id="">
+                            <option value>Select one<option>
                             @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->title }}</option>
                             @endforeach
                         </select>
+                        @error('category_id')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
                         <br>
                         <button class="btn btn-primary mt-3" type="submit">Request</button>
                     </form>
