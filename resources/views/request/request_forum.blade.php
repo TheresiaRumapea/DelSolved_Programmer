@@ -19,7 +19,7 @@
                         @csrf
                         <label class="mb-0" for="">Forum Title <span class="text-danger">*</span> </label>
                         <input name="request_forum_name" class="col-lg-12 table-responsive" type="text">
-                        @error('title')
+                        @error('request_forum_name')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
 
@@ -28,18 +28,15 @@
 
                         <label for="" class="mt-3" >Category <span class="text-danger">*</span></label>
                         <br>
-
-
                         <select name="request_forum_cat" id="">
-                            <option value>Select one<option>
+                            <option value>Select...</option>
                             @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->title }}</option>
                             @endforeach
                         </select>
-                        @error('category_id')
+                        @error('request_forum_cat')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-
                         <br>
                         <button class="btn btn-primary mt-3" type="submit">Request</button>
                     </form>

@@ -83,14 +83,15 @@ class RequestController extends Controller
      */
     public function store_request_forum(Request $request) {
 
+
         $request->validate(
             [
-                'title'=>'required',
-                'category_id' => 'required'
+                'request_forum_name'=>'required',
+                'request_forum_cat' => 'required'
             ],
             [
-                'title.required' => 'Please fill out this field',
-                'category_id.required' => 'Please select item in the list'
+                'request_forum_name.required' => 'Please fill out this field',
+                'request_forum_cat.required' => 'Please select item in the list'
             ]
         );
 
