@@ -55,7 +55,7 @@
         <br><br>
 
         <p>Due Date <span class="text-danger">*</span></p>
-        <input name="delete_at" type="date" value="{{$survey->delete_at}}">
+        <input name="delete_at" type="date" value="{{$survey->delete_at}}" onfocus="this.min=new Date().toISOString().split('T')[0]">
         @error('delete_at')
         <div class="alert alert-danger">{{ $message }}</div>
         @enderror
