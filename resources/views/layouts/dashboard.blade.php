@@ -337,9 +337,9 @@
             // text: 'Do you want to delete this category?',
             showCancelButton: true,
             confirmButtonColor: '#d33',
-            confirmButtonText: 'Delete',
+            confirmButtonText: 'Yes',
             cancelButtonColor: '#D3D3D3',
-            cancelButtonText: "Cancel"
+            cancelButtonText: "No"
 
         }).then(result => {
             //jika klik ya maka Delete
