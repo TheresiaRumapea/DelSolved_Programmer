@@ -29,6 +29,16 @@ class RequestController extends Controller
      * di form ke dalam database
      */
     public function store_request_category(Request $request) {
+
+        $request->validate(
+            [
+                'request_category_name'=>'required'
+            ],
+            [
+                'request_category_name.required' => 'Please fill out this field'
+            ]
+        );
+
         $request_category = new RequestCategory();
         $request_category->category_title = $request->request_category_name;
         $request_category->category_desc = $request->request_category_desc;

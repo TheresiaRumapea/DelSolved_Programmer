@@ -172,7 +172,6 @@ class DashboardController extends Controller
                 $notifStatus->notif_id = Notif::latest()->value('id');
                 $notifStatus->save();
             }
-
         }
 
         RequestCategory::find($id)->delete();

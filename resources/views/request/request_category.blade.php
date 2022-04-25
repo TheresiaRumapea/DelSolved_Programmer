@@ -20,6 +20,9 @@
                         @csrf
                         <label class="mb-0" for="">Category Title <span class="text-danger">*</span></label>
                         <input name="request_category_name" class="col-lg-12 table-responsive mb-2" type="text">
+                        @error('request_category_name')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         <label class="mt-0" for="">Category Description</label>
                         <input name="request_category_desc" class="col-lg-12 table-responsive" type="text">
                         <button class="btn btn-primary mt-3" type="submit">Request</button>
