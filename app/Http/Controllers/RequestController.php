@@ -53,17 +53,17 @@ class RequestController extends Controller
         $notif->save();
 
         for ($i = 1; $i <= $total; $i++) {
-            if ($i === auth()->id()) {
+            if ($i === 1) {
                 $notifStatus = new NotifStatus();
                 $notifStatus->user_id = $i;
                 $notifStatus->notif_id = Notif::latest()->value('id');
-                $notifStatus->is_read = 1;
-                $notifStatus->is_delete = 1;
                 $notifStatus->save();
             } else {
                 $notifStatus = new NotifStatus();
                 $notifStatus->user_id = $i;
                 $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->is_read = 1;
+                $notifStatus->is_delete = 1;
                 $notifStatus->save();
             }
         }
@@ -120,17 +120,17 @@ class RequestController extends Controller
         $notif->save();
 
         for ($i = 1; $i <= $total; $i++) {
-            if ($i === auth()->id()) {
+            if ($i === 1) {
                 $notifStatus = new NotifStatus();
                 $notifStatus->user_id = $i;
                 $notifStatus->notif_id = Notif::latest()->value('id');
-                $notifStatus->is_read = 1;
-                $notifStatus->is_delete = 1;
                 $notifStatus->save();
             } else {
                 $notifStatus = new NotifStatus();
                 $notifStatus->user_id = $i;
                 $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->is_read = 1;
+                $notifStatus->is_delete = 1;
                 $notifStatus->save();
             }
         }

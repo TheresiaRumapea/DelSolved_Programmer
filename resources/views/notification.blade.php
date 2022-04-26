@@ -32,16 +32,33 @@
                         <td>{{ $notif->user->name }}</td>
                         <td>{{ $notif->user->email }}</td>
                         <td><a href="{{ route('notif-read', $notif->status[auth()->id() - 1]->id) }}" class="btn btn-success">mark as read</a></td>
-                    @else
+                        <td>
+                            <a href="{{ route('notif-delete', $notif->status[auth()->id() - 1]->id) }}" class="text-danger alert_notifnotification"><i class="fas fa-trash text-danger"></i></a>
+                        </td>
+                    @endif
+
+                </tr>
+            @endif
+
+            @endisset
+        @endforeach
+        @foreach($notifs as $notif)
+
+            @isset($notif->status[auth()->id() - 1])
+
+            @if($notif->status[auth()->id() - 1]->is_delete === 0)
+                <tr>
+                    {{--                @dd($notif->status[2])--}}
+                    @if ($notif->status[auth()->id() - 1]->is_read === 1)
                         <td class="grey-text">{{ $notif->user->name }} {{ $notif->description }}</td>
                         <td class="grey-text">{{ $notif->user->name }}</td>
                         <td class="grey-text">{{ $notif->user->email }}</td>
                         <td><a href="" class="btn btn-secondary" disabled>mark as read</a></td>
+                        <td>
+                            <a href="{{ route('notif-delete', $notif->status[auth()->id() - 1]->id) }}" class="text-danger alert_notifnotification"><i class="fas fa-trash text-danger"></i></a>
+                        </td>
                     @endif
 
-                    <td>
-                        <a href="{{ route('notif-delete', $notif->status[auth()->id() - 1]->id) }}" class="text-danger alert_notifnotification"><i class="fas fa-trash text-danger"></i></a>
-                    </td>
                 </tr>
             @endif
 
@@ -50,3 +67,4 @@
         </tbody>
     </table>
 @endsection
+
