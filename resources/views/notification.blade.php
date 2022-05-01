@@ -28,7 +28,7 @@
                 <tr>
                     {{--                @dd($notif->status[2])--}}
                     @if ($notif->status[auth()->id() - 1]->is_read === 0)
-                        <td>{{ $notif->user->name }} {{ $notif->description }}</td>
+                        <td>{{ $notif->description }}</td>
                         <td>{{ $notif->user->name }}</td>
                         <td>{{ $notif->user->email }}</td>
                         <td><a href="{{ route('notif-read', $notif->status[auth()->id() - 1]->id) }}" class="btn btn-success">mark as read</a></td>
@@ -50,7 +50,7 @@
                 <tr>
                     {{--                @dd($notif->status[2])--}}
                     @if ($notif->status[auth()->id() - 1]->is_read === 1)
-                        <td class="grey-text">{{ $notif->user->name }} {{ $notif->description }}</td>
+                        <td class="grey-text">{{ $notif->description }}</td>
                         <td class="grey-text">{{ $notif->user->name }}</td>
                         <td class="grey-text">{{ $notif->user->email }}</td>
                         <td><a href="" class="btn btn-secondary" disabled>mark as read</a></td>

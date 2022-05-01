@@ -117,7 +117,7 @@ class DiscussionController extends Controller
 
         $reply->save();
 
-
+        $person_id = $discussion->user_id;
 
         $user = auth()->user();
         $user->increment('rank', 10);
@@ -129,22 +129,22 @@ class DiscussionController extends Controller
         $total = DB::table('users')->count();
 
         $notif = new Notif();
-        $notif->description = "$name replies to topic $dis";
+        $notif->description = "$name replies to your topic ($dis)";
         $notif->user_id = auth()->id();
         $notif->save();
 
         for ($i = 1; $i <= $total; $i++) {
-            if ($i === auth()->id()) {
+            if ($i === $person_id) {
                 $notifStatus = new NotifStatus();
                 $notifStatus->user_id = $i;
                 $notifStatus->notif_id = Notif::latest()->value('id');
-                $notifStatus->is_read = 1;
-                $notifStatus->is_delete = 1;
                 $notifStatus->save();
             } else {
                 $notifStatus = new NotifStatus();
                 $notifStatus->user_id = $i;
                 $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->is_read = 1;
+                $notifStatus->is_delete = 1;
                 $notifStatus->save();
             }
         }

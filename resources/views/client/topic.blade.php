@@ -106,18 +106,11 @@
 
                   @elseif (auth()->user()->is_admin)
                   <div>
-                    {{-- <a href="{{route('reply.like', $reply->id)}}" class="mr-3"><i class="fa fa-thumbs-up text-success"></i>{{$reply->likes}}</a>
-                    <a href="{{route('reply.dislike', $reply->id)}}" ><i class="fa fa-thumbs-down text-danger">{{$reply->dislikes}}</i></a> --}}
                     <a name="desc" class="btn alert_notifreply" href="{{route('reply.delete', $reply->id)}}" ><i class="fa fa-trash text-danger"></i></a>
                 </div>
-                  {{-- @error('desc')
-                  <div class="alert alert-danger">{{ $message }}</div>
-                  @enderror --}}
 
                   @else
                   <div>
-                    {{-- <a href="{{route('reply.like', $reply->id)}}" class="mr-3"><i class="fa fa-thumbs-up text-success"></i>{{$reply->likes}}</a>
-                    <a href="{{route('reply.dislike', $reply->id)}}" ><i class="fa fa-thumbs-down text-danger">{{$reply->dislikes}}</i></a> --}}
                   </div>
                   @endif
                 </td>

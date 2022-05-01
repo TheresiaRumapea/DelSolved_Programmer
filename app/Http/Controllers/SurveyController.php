@@ -129,7 +129,8 @@ class SurveyController extends Controller
      * hapus data survey
      */
     public function deleteSurvey($id) {
-        Survey::find($id)->delete();
+        $temp_survey = Survey::find($id);
+        $temp_survey->delete();
         toastr()->success('Delete Survey successfully!');
         return back();
     }
@@ -138,8 +139,34 @@ class SurveyController extends Controller
      * hapus survey oleh admin
      */
     public function deleteSurveyByAdmin($id) {
-        $survey = DB::table("surveys")->where("id", $id);
-        $survey->delete();
+        $temp_survey = Survey::find($id);
+
+        $survey_title = $temp_survey->title;
+        $survey_person_id = $temp_survey->user_id;
+
+        $total = DB::table('users')->count();
+        $notif = new Notif();
+        $notif->description = "Your survey ($survey_title) deleted by admin";
+        $notif->user_id = auth()->id();
+        $notif->save();
+
+        for ($i = 1; $i <= $total; $i++) {
+            if ($i === $survey_person_id) {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->save();
+            } else {
+                $notifStatus = new NotifStatus();
+                $notifStatus->user_id = $i;
+                $notifStatus->notif_id = Notif::latest()->value('id');
+                $notifStatus->is_read = 1;
+                $notifStatus->is_delete = 1;
+                $notifStatus->save();
+            }
+        }
+
+        $temp_survey->delete();
         toastr()->success('Delete Survey successfully!');
         return back();
     }
