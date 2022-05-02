@@ -15,7 +15,7 @@
                     </div>
                     <div class="second d-flex flex-row mt-2">
                        @if ($user->image)
-                       <div class="image mr-3"> <img src="{{asset('/storage/profile/'.$user->image)}}" class="rounded-circle" width="60" /> </div> 
+                       <div class="image mr-3"> <img src="{{asset('/storage/profile/'.$user->image)}}" class="rounded-circle" width="60" /> </div>
                        @else
                        <div class="image mr-3"> <img src="{{asset('/images/profile.png')}}" class="rounded-circle" width="60" /> </div>
                        @endif
@@ -27,7 +27,7 @@
                                 <button class="btn btn-outline-dark btn-sm px-2">{{$user->country}}</button>
                             @else
                             <button class="btn btn-outline-dark btn-sm px-2">Not Updated</button>
-                            @endif 
+                            @endif
 
                             @if ($user->id === auth()->id())
                             <a  href="/home" class="btn btn-outline-primary btn-sm">See Profile</a>
@@ -39,11 +39,11 @@
                     </div>
                     <hr class="line-color">
                     @if ($user->proffesion)
-                    <h6>{{$user->proffesion}}</h6> 
+                    <h6>{{$user->proffesion}}</h6>
                     @else
                     <h6>Profession not updated</h6>
                     @endif
-    
+
                 </div>
             </div>
             @endforeach

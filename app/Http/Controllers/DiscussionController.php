@@ -108,6 +108,7 @@ class DiscussionController extends Controller
 
         $reply = new DiscussionReply;
 
+
         $reply->desc = $request->desc;
         $reply->user_id = auth()->id();
         $reply->discussion_id = $id;

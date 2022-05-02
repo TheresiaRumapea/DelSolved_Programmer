@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\DB;
 class SurveyController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['showAllSurvey', 'showSurvey']);
+
+    }
+
+
+
     public function showAllSurvey() {
         $surveys = Survey::all();
         return view('survey.surveys', compact('surveys'));

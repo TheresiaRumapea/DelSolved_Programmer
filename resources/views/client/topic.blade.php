@@ -32,7 +32,7 @@
             <tbody>
               <tr>
                 <td class="author-col">
-                  <div>by<a href="#"> {{$topic->user->name}}</a></div>
+                  <div>by<a href="/client/user/{{ $topic->user->id}}"> {{$topic->user->name}}</a></div>
                 </td>
                 <td class="post-col d-lg-flex justify-content-lg-between">
                   <div>
@@ -81,21 +81,32 @@
           @foreach ($topic->replies as $reply)
 
           <table
-            class="table   "
+            class="table"
           >
             <tbody>
               <tr class="table-info">
-                <td class="author-col">
-                  <div>by<a href="#"> {{$reply->user->name}}</a></div>
-                </td>
-                <td class="post-col d-lg-flex justify-content-lg-between">
+                <td class="author-col justify-content-end">
                   <div>
+                      <div class="photo-reply >
+                        @if ($reply->user->image)
+                        <div class="image mr-3"> <img src="{{asset('/storage/profile/'.$reply->user->image)}}" class="rounded-circle" width="60" /> </div>
+                        @else
+                        <div class="image mr-3"> <img src="{{asset('/images/profile.png')}}" class="rounded-circle" width="60" /> </div>
+                        @endif
+                      </div>
+                </div>
+                <a href="/client/user/{{ $reply->user->id}}"> {{$reply->user->name}}</a>
+
+                </td>
+                <td class="post-col justify-content-end">
+
+                  {{-- <div>
                     <span class="font-weight-bold">Post subject:</span>
                     {{$topic->title}}
-                  </div>
-                  <div>
-                    <span class="font-weight-bold">Replied:</span> {{$reply->created_at->diffForHumans()}}
-                  </div>
+                  </div> --}}
+                  {{-- <div> --}}
+                    {{-- <span class="font-weight-bold">Replied:</span> {{$reply->created_at->diffForHumans()}} --}}
+                  {{-- </div> --}}
                   @if(auth()->id() == $reply->user_id )
                   <div>
                     <a name="desc" class="btn alert_notifreply" href="{{route('reply.delete', $reply->id)}}" ><i class="fa fa-trash text-danger"></i></a>
@@ -110,18 +121,16 @@
                 </div>
 
                   @else
-                  <div>
-                  </div>
                   @endif
                 </td>
               </tr>
               <tr>
-                <td>
+                {{-- <td>
                   <div>
                     <span class="font-weight-bold">Joined:</span>{{ \Carbon\Carbon::parse($topic->user->created_at)->diffForHumans() }}
                   </div>
 
-                </td>
+                </td> --}}
                 <td>
                   <p>
                    {{$reply->desc}}
@@ -129,9 +138,16 @@
 
                 </td>
 
+
               </tr>
+              <td>
+                <div>
+                    <span class="font-weight-bold">Replied:</span> {{$reply->created_at->diffForHumans()}}
+                  </div>
             </tbody>
           </table>
+
+      </td>
 
           @endforeach
 

@@ -70,10 +70,16 @@ if (Auth::check()) {
 
 
             {{-- Survey Button --}}
+            @guest
+            <a class="nav-item nav-link text-white btn btn-outline-success"
+            href="/survey">Survey</a>
+            @endguest
+
             @auth
             <a class="nav-item nav-link text-white btn btn-outline-success"
             href="/survey">Survey</a>
             @endauth
+
 
             @if (request()->routeIs('base'))
             <form action="{{route('search')}}" method="POST" class="form-inline mr-3 mb-2 mb-sm-0">

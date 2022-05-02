@@ -23,7 +23,7 @@
                   <th scope="col">Forum</th>
                   <th scope="col">Topics</th>
                   {{-- <th scope="col">Posts</th> --}}
-             
+
                 </tr>
               </thead>
               <tbody>
@@ -39,12 +39,12 @@
                           {!!$forum->desc!!}
                         </p>
                       </td>
-                      <td><div>{{count($forum->discussions)}}</div></td>                                        
+                      <td><div>{{count($forum->discussions)}}</div></td>
                     </tr>
                     @endforeach
                 @else
-                   <h4>No forums in this category</h4> 
-                @endif               
+                   <h4>No forums in this category</h4>
+                @endif
               </tbody>
             </table>
           </div>
@@ -64,7 +64,7 @@
               </ul>
             </div>
             <div class="card-footer">
-             
+
             </div>
           </div>
           <div class="card">
@@ -93,7 +93,7 @@
             </div>
           </div>
         </aside>
-      </div>  
+      </div>
     </div>
   </div>
 @endsection

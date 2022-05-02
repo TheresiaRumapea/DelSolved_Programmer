@@ -17,6 +17,7 @@ use App\Http\Controllers\NotifController;
 
 Route::get('/', [FrontendController::class, 'index'])->name('base');
 
+
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -29,10 +30,7 @@ Route::get('/category/overview/{id}', [FrontendController::class, 'categoryOverv
 
 Route::get('/forum/overview/{id}', [FrontendController::class,'forumOverview'])->name('forum.overview');
 
-/**
- * route delete topic by admin
- */
-Route::get('/forum/overview/delete/{id}', [FrontendController::class, 'deleteTopic']);
+
 
 
 Route::middleware(['auth','admin'])->group(function () {
@@ -70,6 +68,16 @@ Route::middleware(['auth','admin'])->group(function () {
     Route::get('/dashboard/request/category/reject/{id}', [DashboardController::class, 'reject_category'])->name('reject_category');
     Route::get('/dashboard/request/forum/accept/{id}', [DashboardController::class, 'accept_forum'])->name('accept_forum');
     Route::get('/dashboard/request/forum/reject/{id}', [DashboardController::class, 'reject_forum'])->name('reject_forum');
+
+    //survey
+    Route::get("survey/delete/{id}", [SurveyController::class, 'deleteSurveyByAdmin']);
+
+    /**
+ * route delete topic by admin
+ */
+Route::get('/forum/overview/delete/{id}', [FrontendController::class, 'deleteTopic']);
+
+
 });
 
 
@@ -109,9 +117,12 @@ Route::post('request/category/store', [RequestController::class, 'store_request_
 Route::get('request/forum', [RequestController::class, 'show_forum_view']);
 Route::post('request/forum/store', [RequestController::class, 'store_request_forum'])->name('request.forum.store');
 
-/**
+    //Survey
+    /**
  * route untuk fitur survey
  */
+Route::get('survey', [SurveyController::class, 'showAllSurvey']);
+Route::get('survey/{id}', [SurveyController::class, 'showSurvey']);
 Route::get('survey', [SurveyController::class, 'showAllSurvey']);
 Route::get('survey/showForm', [SurveyController::class, 'showForm']);
 Route::post('survey/storeSurvey', [SurveyController::class, 'storeSurvey'])->name('store.survey');
@@ -120,7 +131,7 @@ Route::get('survey/self/{id}', [SurveyController::class, 'showSelfSurvey']);
 Route::get('survey/self/edit/{id}', [SurveyController::class, 'editSurveyForm']);
 Route::post('survey/self/storeEdit/{id}', [SurveyController::class, 'storeEditSurvey'])->name('store.edit');
 Route::get('survey/self/delete/{id}', [SurveyController::class, 'deleteSurvey']);
-Route::get("survey/delete/{id}", [SurveyController::class, 'deleteSurveyByAdmin']);
+
 
 /**
  * route untuk fitur profil & operasi self discussions
